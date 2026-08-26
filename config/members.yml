@@ -1,0 +1,35 @@
+# Danh sách thành viên được tổng hợp report.
+# slack_id: ID Slack dạng U… (Profile → More → Copy member ID).
+# github: dùng khi automation đối chiếu commit / PR (tuỳ chọn).
+# active: false = bỏ qua khi tổng hợp, vẫn giữ trong danh sách.
+
+members:
+  - id: an-huynh-le
+    name: "An Huynh Le"
+    slack_id: "U08GQK0MJRF"
+    role: developer
+    active: true
+
+  - id: bui-tan-trung
+    name: "Bùi Tấn Trung"
+    slack_id: "U08FYPH1STH"
+    role: developer
+    active: true
+
+  - id: van-lam-tb
+    name: "Văn Lam TB"
+    slack_id: "U041QM1H8UQ"
+    role: developer
+    active: true
+
+  - id: nguyen-hieu-thanh
+    name: "Nguyen Hieu Thanh"
+    slack_id: "U0417RHLGKW"
+    role: developer
+    active: true
+
+  - id: nguyen-thanh-trung
+    name: "Nguyen Thanh Trung"
+    slack_id: "U0645UYPX8U"
+    role: developer
+    active: true

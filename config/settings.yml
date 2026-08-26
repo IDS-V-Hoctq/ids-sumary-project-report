@@ -1,0 +1,84 @@
+# Cấu hình chung cho slack-task-reporter.
+# Automation đọc file này mỗi lần chạy. Không hard-code channel / giờ trong prompt.
+
+project:
+  name: IDS Summary Project Report
+  locale: vi
+  timezone: Asia/Ho_Chi_Minh
+
+slack:
+  # Kênh nguồn: Slack Workflow đăng form update vào đây (ID dạng C… hoặc G…).
+  source_channel_id: "C0BN64RJT0B"
+  source_channel_name: "#project-management-vn"
+
+  # Kênh đích: nơi automation đăng bản tổng hợp.
+  report_channel_id: "C0BN64RJT0B"
+  report_channel_name: "#project-management-vn"
+
+  mention_missing_members: true
+  mention_blockers: true
+
+# Workflow đã có sẵn (người khác tạo). Reporter chỉ ĐỌC bài nộp — không tạo / sửa / thay form.
+source:
+  type: slack_workflow
+  mode: consume_existing
+  create_or_edit_workflow: false
+  workflow_name: "PM Daily Report"
+  ignore_regular_chat: true
+  ignore_thread_replies: true
+  # Mỗi member: lấy bài workflow mới nhất trong kỳ (daily) hoặc gom tất cả (weekly/monthly).
+  latest_only_for_daily: true
+  # Form thật (PM Daily Report) — tin dạng section emoji, ví dụ:
+  # :date: Báo cáo 25/08 | :bust_in_silhouette: Nguyễn Thành Trung
+  # :white_check_mark: Đã hoàn thành
+  # :arrows_counterclockwise: Đang thực hiện
+  # :dart: Tiến độ tổng thể:
+  # :date: Dự định ngày mai
+  message_format: emoji_sections
+  header:
+    date_prefix: "Báo cáo"
+    member_separator: "|"
+  fields:
+    done:
+      - "Đã hoàn thành"
+      - ":white_check_mark:"
+    doing:
+      - "Đang thực hiện"
+      - ":arrows_counterclockwise:"
+    progress:
+      - "Tiến độ tổng thể"
+      - ":dart:"
+    tomorrow:
+      - "Dự định ngày mai"
+      - ":date:"
+
+periods:
+  daily:
+    enabled: true
+    # 17:30 Thứ 2–6, giờ Việt Nam (cron lưu UTC: 10:30).
+    cron: "30 10 * * 1-5"
+    lookback: 1d
+    prompt: prompts/daily-summary.md
+
+  weekly:
+    enabled: true
+    # 11:00 Thứ 3 hàng tuần, giờ Việt Nam (cron lưu UTC: 04:00).
+    cron: "0 4 * * 2"
+    lookback: 7d
+    prompt: prompts/weekly-summary.md
+
+  monthly:
+    enabled: true
+    # 09:00 ngày 1 hàng tháng, giờ Việt Nam (cron lưu UTC: 02:00).
+    cron: "0 2 1 * *"
+    lookback: 1M
+    prompt: prompts/monthly-summary.md
+
+report:
+  language: vi
+  group_by: member
+  include_highlights: true
+  include_blockers: true
+  include_next_plan: true
+  include_missing_members: true
+  max_bullets_per_member: 5
