@@ -50,5 +50,5 @@ Quy tắc: ưu tiên kết quả hơn nhật ký ngày; không bịa số liệu
 
 ## 4. Đăng Slack
 
-- Đăng `slack.report_channel_id`, một message.
+- Đăng **DM cho chủ automation** (`dm_owner`), một message. Không đăng lại kênh nguồn.
 - Không sửa config trong repo.

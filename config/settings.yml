@@ -11,9 +11,11 @@ slack:
   source_channel_id: "C0BN64RJT0B"
   source_channel_name: "#project-management-vn"
 
-  # Kênh đích: nơi automation đăng bản tổng hợp.
-  report_channel_id: "C0BN64RJT0B"
-  report_channel_name: "#project-management-vn"
+  # Đích: DM cho chủ Cursor Automation — không đăng lại kênh nguồn.
+  # report_channel_id dạng D… (chọn DM trong Automations editor). Không dùng U….
+  report_target: dm_owner
+  report_channel_id: ""
+  report_channel_name: "DM (automation owner)"
 
   mention_missing_members: true
   mention_blockers: true

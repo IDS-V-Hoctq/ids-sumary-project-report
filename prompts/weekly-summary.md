@@ -60,5 +60,5 @@ Quy tắc: gộp daily trùng ý; không bịa %; không nêu dữ liệu ngoài
 
 ## 4. Đăng Slack
 
-- Đăng `slack.report_channel_id`, một message, không reply từng bài.
+- Đăng **DM cho chủ automation** (`dm_owner`), một message. Không đăng lại kênh nguồn.
 - Không sửa config trong repo.

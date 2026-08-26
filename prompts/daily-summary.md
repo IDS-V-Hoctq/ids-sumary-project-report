@@ -71,6 +71,6 @@ Quy tắc:
 
 ## 4. Đăng Slack
 
-- Đăng vào kênh `slack.report_channel_id`.
+- Đăng **DM cho chủ automation** (`slack.report_target: dm_owner`). Không đăng lại `#project-management-vn`.
 - Message mới, không reply từng bài workflow.
 - Sau khi đăng, không chỉnh sửa config trong repo.

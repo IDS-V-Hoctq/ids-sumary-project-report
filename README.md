@@ -24,7 +24,7 @@ README.md
 1. Member nộp **Slack Workflow có sẵn** (`PM Daily Report`, người khác đã tạo) — bài đăng vào `#project-management-vn`.
 2. Reporter **không** tạo hay sửa workflow đó; chỉ đọc bài đã đăng.
 3. Đúng lịch, Cursor Automation checkout repo, tách 4 section form, đối chiếu `members.yml`.
-4. Agent đăng bản **summary** vào cùng kênh (hoặc kênh đích nếu đổi).
+4. Agent gửi bản **summary** vào **DM của chủ automation** (không đăng lại kênh nguồn).
 
 Automation **không** tự sửa file trong repo. Đổi member / kênh / giờ thì sửa YAML rồi commit lên branch mà automation checkout.
 
@@ -48,7 +48,7 @@ Thay các dòng example bằng người thật:
 Điền 4 giá trị Slack (ID dạng `C…` hoặc `G…`, không dùng `U…`):
 
 - `slack.source_channel_id` / `source_channel_name` — kênh Slack Workflow đăng form
-- `slack.report_channel_id` / `report_channel_name` — kênh nhận bản tổng hợp
+- `slack.report_target: dm_owner` — gửi DM cho người tạo automation; chọn DM (`D…`) trong Automations editor
 - `source.workflow_name` — tên workflow đã có (`PM Daily Report`). Không tạo workflow mới
 - `source.fields` — section trên form PM Daily Report: `Đã hoàn thành` / `Đang thực hiện` / `Tiến độ tổng thể` / `Dự định ngày mai`
 
@@ -74,7 +74,7 @@ Mỗi automation:
 | Tools          | Đọc Slack + Đăng Slack                                                  |
 | Repo / branch  | Repo này, branch đã commit `config/` và `prompts/`                      |
 | Kênh đọc       | `source_channel_id`                                                     |
-| Kênh đăng      | `report_channel_id`                                                     |
+| Đích đăng      | DM chủ automation (`dm_owner`)                                          |
 | Instructions   | Nội dung file `prompts/daily-summary.md` / `weekly-summary.md` / `monthly-summary.md` |
 
 Commit và push `config/` + `prompts/` trước khi bật automation. Agent cloud chỉ thấy file đã có trên branch.
