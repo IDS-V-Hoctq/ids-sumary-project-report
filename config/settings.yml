@@ -7,15 +7,14 @@ project:
   timezone: Asia/Ho_Chi_Minh
 
 slack:
-  # Kênh nguồn: Slack Workflow đăng form update vào đây (ID dạng C… hoặc G…).
-  source_channel_id: "C0BN64RJT0B"
-  source_channel_name: "#project-management-vn"
+  # ĐĂNG summary — chỉ DM. Không điền C… / tên kênh ở đây (tránh agent gửi nhầm).
+  post_to: owner_dm
+  post_channel_id: null
 
-  # Đích: DM cho chủ Cursor Automation — không đăng lại kênh nguồn.
-  # report_channel_id dạng D… (chọn DM trong Automations editor). Không dùng U….
-  report_target: dm_owner
-  report_channel_id: ""
-  report_channel_name: "DM (automation owner)"
+  # ĐỌC form PM Daily Report. Không phải đích gửi.
+  read_only:
+    channel_id: "C0BN64RJT0B"
+    channel_name: "#project-management-vn"
 
   mention_missing_members: true
   mention_blockers: true
@@ -77,6 +76,8 @@ periods:
     prompt: prompts/monthly-summary.md
 
 report:
+  destination: owner_dm
+  never_post_to_source_channel: true
   language: vi
   group_by: member
   include_highlights: true

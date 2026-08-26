@@ -47,8 +47,8 @@ Thay các dòng example bằng người thật:
 
 Điền 4 giá trị Slack (ID dạng `C…` hoặc `G…`, không dùng `U…`):
 
-- `slack.source_channel_id` / `source_channel_name` — kênh Slack Workflow đăng form
-- `slack.report_target: dm_owner` — gửi DM cho người tạo automation; chọn DM (`D…`) trong Automations editor
+- `slack.post_to: owner_dm` — **đăng** summary vào DM của bạn (`post_channel_id: null`)
+- `slack.read_only` — **chỉ đọc** `#project-management-vn`. Không dùng làm đích gửi
 - `source.workflow_name` — tên workflow đã có (`PM Daily Report`). Không tạo workflow mới
 - `source.fields` — section trên form PM Daily Report: `Đã hoàn thành` / `Đang thực hiện` / `Tiến độ tổng thể` / `Dự định ngày mai`
 
@@ -73,7 +73,7 @@ Mỗi automation:
 | Trigger        | Đúng lịch (cron) của kỳ đó                                              |
 | Tools          | Đọc Slack + Đăng Slack                                                  |
 | Repo / branch  | Repo này, branch đã commit `config/` và `prompts/`                      |
-| Kênh đọc       | `source_channel_id`                                                     |
+| Kênh đọc       | `slack.read_only.channel_id`                                            |
 | Đích đăng      | DM chủ automation (`dm_owner`)                                          |
 | Instructions   | Nội dung file `prompts/daily-summary.md` / `weekly-summary.md` / `monthly-summary.md` |
 
